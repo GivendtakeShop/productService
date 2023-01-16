@@ -39,4 +39,6 @@ public interface ProductService {
     List<Product> getProductsByOrderByNameAsc();
 
     List<Product> getProductsByOrderByNameDesc();
+
+    Product updateQuantity(String id, int quantity);
 }

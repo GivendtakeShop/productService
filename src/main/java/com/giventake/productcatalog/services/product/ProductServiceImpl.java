@@ -9,12 +9,15 @@ import com.giventake.productcatalog.exceptions.ExceptionPayloadFactory;
 import com.giventake.productcatalog.repositories.ProductRepository;
 import com.giventake.productcatalog.requestDTOs.ProductRequestDTO;
 import com.giventake.productcatalog.requestDTOs.mappers.ProductRequestMapper;
+import com.giventake.productcatalog.utilities.Assert;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
+import static com.giventake.productcatalog.utilities.Assert.assertMaxValue;
 
 @Service
 @RequiredArgsConstructor
@@ -108,5 +111,13 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getProductsByOrderByNameDesc() {
         return productRepository.findByOrderByNameDesc();
+    }
+
+    @Override
+    public Product updateQuantity(String id, int quantity) {
+        Product product = getProduct(id);
+        assertMaxValue(quantity, product.getQuantity());
+        product.setQuantity(product.getQuantity()-quantity);
+        return productRepository.save(product);
     }
 }

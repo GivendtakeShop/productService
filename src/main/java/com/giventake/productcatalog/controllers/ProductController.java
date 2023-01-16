@@ -124,4 +124,11 @@ public class ProductController {
                 .stream().map(productResponseMapper::productToProductResponseDTO)
                 .collect(Collectors.toList());
     }
+
+    @PutMapping("/{id}/updateQuantity")
+    public ProductResponseDTO updateQuantity(@PathVariable String id, @RequestParam Integer quantity){
+        return productResponseMapper.productToProductResponseDTO(productService.updateQuantity(id, quantity));
+
+
+    }
 }

@@ -22,7 +22,9 @@ public enum ExceptionPayloadFactory {
 
     MIN_VALUE(5, HttpStatus.BAD_REQUEST, "min.value"),
 
-    SIZE_LIMIT_EXCEEDED(6, HttpStatus.BAD_REQUEST,"size.limit.exceeded");
+    SIZE_LIMIT_EXCEEDED(6, HttpStatus.BAD_REQUEST,"size.limit.exceeded"),
+
+    MAX_VALUE(7,HttpStatus.BAD_REQUEST ,"max.value" );
 
 
 

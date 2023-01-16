@@ -10,6 +10,7 @@ public interface Assert {
     ExceptionPayload requiredField = ExceptionPayloadFactory.REQUIRED_FIELD.get();
     ExceptionPayload unknownValue = ExceptionPayloadFactory.UNKOWN_VALUE.get();
     ExceptionPayload minValue = ExceptionPayloadFactory.MIN_VALUE.get();
+    ExceptionPayload maxValue = ExceptionPayloadFactory.MAX_VALUE.get();
 
 
     static public void assertNotNull(Object value){
@@ -25,6 +26,11 @@ public interface Assert {
     static  public  void assertMinValue(long value, long min){
 
         if( value < min ) throw new BusinessException(minValue);
+    }
+
+    static  public  void assertMaxValue(long value, long max){
+
+        if( value > max ) throw new BusinessException(maxValue);
     }
 
 }
