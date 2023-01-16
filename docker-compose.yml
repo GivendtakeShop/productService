@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+
+  productCatalog_db:
+    container_name: "productCatalog_db"
+    image: "postgres"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=productCatalog_db
+      - POSTGRES_PASSWORD=root
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
+    driver: local
