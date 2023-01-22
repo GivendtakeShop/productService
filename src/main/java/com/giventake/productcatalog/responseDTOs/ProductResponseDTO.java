@@ -15,4 +15,5 @@ public class ProductResponseDTO {
     private String type;
     private String description;
     private int quantity;
+    private String coverId;
 }

@@ -5,8 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 
 
 @AllArgsConstructor
@@ -22,5 +24,6 @@ public class File extends BaseEntity{
 
     @Lob
     private byte[] data;
+
 
 }

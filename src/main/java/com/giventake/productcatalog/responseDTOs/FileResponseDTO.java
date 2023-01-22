@@ -10,7 +10,7 @@ import lombok.Setter;
 public class FileResponseDTO {
 
     private String name;
-    private String url;
+    private byte[] data;
     private String type;
     private long size;
 }

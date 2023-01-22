@@ -20,4 +20,7 @@ public class Product extends BaseEntity{
 
     private int quantity;
 
+    @OneToOne
+    private File cover;
+
 }

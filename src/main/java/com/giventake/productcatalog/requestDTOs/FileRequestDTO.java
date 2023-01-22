@@ -1,6 +1,7 @@
 package com.giventake.productcatalog.requestDTOs;
 
 
+import com.giventake.productcatalog.entities.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,5 +16,6 @@ public class FileRequestDTO {
     private String type;
 
     private byte[] data;
+
 
 }

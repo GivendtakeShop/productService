@@ -26,9 +26,9 @@ public class FileController {
     private final FileResponseMapper fileResponseMapper;
 
     @PostMapping
-    public FileResponseDTO addFile(@RequestBody MultipartFile file) throws IOException {
+    public FileResponseDTO addFile(@RequestBody MultipartFile file, @RequestParam String productId) throws IOException {
         return fileResponseMapper
-                .fileToFileResponseDTO(fileService.addFile(file));
+                .fileToFileResponseDTO(fileService.addFile(file,productId));
     }
 
     @GetMapping

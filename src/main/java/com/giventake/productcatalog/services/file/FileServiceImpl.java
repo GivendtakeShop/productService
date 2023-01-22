@@ -2,10 +2,13 @@ package com.giventake.productcatalog.services.file;
 
 
 import com.giventake.productcatalog.entities.File;
+import com.giventake.productcatalog.entities.Product;
 import com.giventake.productcatalog.exceptions.BusinessException;
 import com.giventake.productcatalog.repositories.FileRepository;
+import com.giventake.productcatalog.repositories.ProductRepository;
 import com.giventake.productcatalog.requestDTOs.FileRequestDTO;
 import com.giventake.productcatalog.requestDTOs.mappers.FileRequestMapper;
+import com.giventake.productcatalog.services.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -22,14 +25,24 @@ public class FileServiceImpl implements FileService {
     private FileRepository fileRepository;
     @Autowired
     private FileRequestMapper fileRequestMapper;
+    @Autowired
+    private ProductService productService;
+    @Autowired
+    private ProductRepository productRepository;
 
     @Override
-    public File addFile(MultipartFile newFile) throws IOException {
+    public File addFile(MultipartFile newFile, String productId) throws IOException {
 
+        Product product = productService.getProduct(productId);
         String fileName = StringUtils.cleanPath(newFile.getOriginalFilename());
         FileRequestDTO file = new FileRequestDTO(fileName, newFile.getContentType(), newFile.getBytes());
 
-        return fileRepository.save(fileRequestMapper.fileRequestDTOToFile(file));
+        File cover = fileRequestMapper.fileRequestDTOToFile(file);
+        fileRepository.save(cover);
+
+        product.setCover(cover);
+        productRepository.save(product);
+        return cover;
 
     }
 
